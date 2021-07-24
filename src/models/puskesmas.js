@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
 	);
 	Puskesmas.associate = function (models) {
 		// associations can be defined here
+		Puskesmas.hasOne(models.Polis, {
+			foreignKey: "puskesmas_id",
+			as: "polis",
+		});
 	};
 	return Puskesmas;
 };

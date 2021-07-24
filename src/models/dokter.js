@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
 	);
 	Dokter.associate = function (models) {
 		// associations can be defined here
+		Dokter.hasOne(models.Polis, {
+			foreignKey: "dokter_id",
+			as: "polis",
+		});
 	};
 	return Dokter;
 };

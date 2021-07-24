@@ -1,16 +1,25 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-	const polis = sequelize.define(
-		"polis",
+	const Polis = sequelize.define(
+		"Polis",
 		{
 			nama_poli: DataTypes.STRING,
-			puskesmas_id: DataTypes.NUMBER,
-			dokter_id: DataTypes.NUMBER,
+			puskesmas_id: DataTypes.INTEGER,
+			dokter_id: DataTypes.INTEGER,
 		},
 		{}
 	);
-	polis.associate = function (models) {
+	Polis.associate = function (models) {
 		// associations can be defined here
+		Polis.belongsTo(models.Dokter, {
+			foreignKey: "dokter_id",
+			as: "dokters",
+		});
+
+		Polis.belongsTo(models.Puskesmas, {
+			foreignKey: "puskesmas_id",
+			as: "puskesmas",
+		});
 	};
-	return polis;
+	return Polis;
 };

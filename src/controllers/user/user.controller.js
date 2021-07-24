@@ -3,19 +3,68 @@ import crypto from "crypto";
 import { User } from "../../models";
 import { successResponse, errorResponse } from "../../helpers";
 
-export const allUsers = async (req, res) => {
+export const list = async (req, res) => {
 	try {
-		const page = req.params.page || 1;
-		const limit = 2;
-		const users = await User.findAndCountAll({
-			order: [
-				["createdAt", "DESC"],
-				["firstName", "ASC"],
-			],
-			offset: (page - 1) * limit,
-			limit,
-		});
-		return successResponse(req, res, { users });
+		const result = await User.findAll({});
+		return successResponse(req, res, "", result);
+	} catch (error) {
+		return errorResponse(req, res, error.message);
+	}
+};
+
+export const create = async (req, res) => {
+	try {
+		const { nama, nik, password, alamat, email, nomor_hp } = req.body;
+		const payload = {
+			nama,
+			nik,
+			password,
+			alamat,
+			email,
+			nomor_hp,
+		};
+		const created = await User.create(payload);
+		return successResponse(req, res, "sukses create", created);
+	} catch (error) {
+		return errorResponse(req, res, error.message);
+	}
+};
+
+export const update = async (req, res) => {
+	try {
+		const { nama, nik, password, alamat, email, nomor_hp } = req.body;
+		const payload = {
+			nama,
+			nik,
+			password,
+			alamat,
+			email,
+			nomor_hp,
+		};
+
+		let find = await User.findByPk(req.params.id);
+
+		if (!find) {
+			return res.status(400).send({ message: "dokter tidak ditemukan" });
+		} else {
+			const updated = await find.update(payload);
+			return successResponse(req, res, "sukses update", updated);
+		}
+	} catch (error) {
+		return errorResponse(req, res, error.message);
+	}
+};
+
+export const deleted = async (req, res) => {
+	try {
+		let find = await User.findByPk(req.params.id);
+
+		if (!find) {
+			return res.status(400).send({ message: "dokter tidak ditemukan" });
+		} else {
+			const destroy = await find.destroy();
+			return successResponse(req, res, "sukses delete");
+		}
 	} catch (error) {
 		return errorResponse(req, res, error.message);
 	}

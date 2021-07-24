@@ -4,7 +4,7 @@ import { successResponse, errorResponse } from "../../helpers";
 export const list = async (req, res) => {
 	try {
 		const result = await Dokter.findAll({});
-		return successResponse(req, res, result);
+		return successResponse(req, res, "", result);
 	} catch (error) {
 		return errorResponse(req, res, error.message);
 	}
@@ -43,7 +43,7 @@ export const update = async (req, res) => {
 		if (!find) {
 			return res.status(400).send({ message: "dokter tidak ditemukan" });
 		} else {
-			const updated = await Dokter.update(payload);
+			const updated = await find.update(payload);
 			return successResponse(req, res, "sukses update", updated);
 		}
 	} catch (error) {
@@ -58,7 +58,7 @@ export const deleted = async (req, res) => {
 		if (!find) {
 			return res.status(400).send({ message: "dokter tidak ditemukan" });
 		} else {
-			const destroy = await Dokter.destroy(payload);
+			const destroy = await find.destroy();
 			return successResponse(req, res, "sukses delete");
 		}
 	} catch (error) {

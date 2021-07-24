@@ -4,7 +4,7 @@ import { successResponse, errorResponse } from "../../helpers";
 export const list = async (req, res) => {
 	try {
 		const result = await Puskesmas.findAll({});
-		return successResponse(req, res, result);
+		return successResponse(req, res, "", result);
 	} catch (error) {
 		return errorResponse(req, res, error.message);
 	}
@@ -34,12 +34,12 @@ export const update = async (req, res) => {
 			no_telp,
 		};
 
-		let find = await Dokter.findByPk(req.params.id);
+		let find = await Puskesmas.findByPk(req.params.id);
 
 		if (!find) {
 			return res.status(400).send({ message: "puskesmas tidak ditemukan" });
 		} else {
-			const updated = await Puskesmas.update(payload);
+			const updated = await find.update(payload);
 			return successResponse(req, res, "sukses update", updated);
 		}
 	} catch (error) {
@@ -54,7 +54,7 @@ export const deleted = async (req, res) => {
 		if (!find) {
 			return res.status(400).send({ message: "puskesmas tidak ditemukan" });
 		} else {
-			const destroy = await Puskesmas.destroy(payload);
+			const destroy = await find.destroy();
 			return successResponse(req, res, "sukses delete");
 		}
 	} catch (error) {
