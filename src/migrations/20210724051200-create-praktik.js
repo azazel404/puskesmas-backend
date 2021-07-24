@@ -8,6 +8,9 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.INTEGER,
 			},
+			nama_praktik: {
+				type: Sequelize.STRING,
+			},
 			jam_mulai: {
 				type: Sequelize.STRING,
 			},

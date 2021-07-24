@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
 	const Praktik = sequelize.define(
 		"Praktik",
 		{
+			nama_praktik: DataTypes.STRING,
 			jam_mulai: DataTypes.STRING,
 			jam_tutup: DataTypes.STRING,
 			start_praktik: DataTypes.DATE,

@@ -12,9 +12,10 @@ export const list = async (req, res) => {
 
 export const create = async (req, res) => {
 	try {
-		const { jam_mulai, jam_tutup, start_praktik, end_praktik, polis_id, status } =
+		const { nama_praktik,jam_mulai, jam_tutup, start_praktik, end_praktik, polis_id, status } =
 			req.body;
 		const payload = {
+			nama_praktik,
 			jam_mulai,
 			jam_tutup,
 			start_praktik,
@@ -31,9 +32,10 @@ export const create = async (req, res) => {
 
 export const update = async (req, res) => {
 	try {
-		const { jam_mulai, jam_tutup, start_praktik, end_praktik, polis_id, status } =
+		const { nama_praktik,jam_mulai, jam_tutup, start_praktik, end_praktik, polis_id, status } =
 			req.body;
 		const payload = {
+			nama_praktik,
 			jam_mulai,
 			jam_tutup,
 			start_praktik,

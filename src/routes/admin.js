@@ -4,6 +4,8 @@ import * as dokterController from "../controllers/dokter/dokter.controller";
 import * as puskesmasController from "../controllers/puskesmas/puskesmas.controller";
 import * as polisController from "../controllers/polis/polis.controller";
 import * as praktikController from "../controllers/praktik/praktik.controller";
+import * as antrianController from "../controllers/antrian/antrian.controller";
+
 
 const router = express.Router();
 
@@ -34,5 +36,11 @@ router.get("/praktik/list", praktikController.list);
 router.post("/praktik/create", praktikController.create);
 router.put("/praktik/update/:id", praktikController.update);
 router.delete("/praktik/delete/:id", praktikController.deleted);
+
+router.get("/antrian/list", antrianController.list);
+router.get("/antrian/history", antrianController.historyList);
+// router.post("/antrian/create", antrianController.create);
+router.put("/antrian/update/:id", antrianController.update);
+
 
 module.exports = router;

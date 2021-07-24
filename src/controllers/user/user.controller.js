@@ -15,14 +15,16 @@ export const list = async (req, res) => {
 export const create = async (req, res) => {
 	try {
 		const { nama, nik, password, alamat, email, nomor_hp } = req.body;
+		const reqPass = crypto.createHash("md5").update(password).digest("hex");
 		const payload = {
 			nama,
 			nik,
-			password,
+			password: reqPass,
 			alamat,
 			email,
 			nomor_hp,
 		};
+		
 		const created = await User.create(payload);
 		return successResponse(req, res, "sukses create", created);
 	} catch (error) {
@@ -33,10 +35,11 @@ export const create = async (req, res) => {
 export const update = async (req, res) => {
 	try {
 		const { nama, nik, password, alamat, email, nomor_hp } = req.body;
+		const reqPass = crypto.createHash("md5").update(password).digest("hex");
 		const payload = {
 			nama,
 			nik,
-			password,
+			password: reqPass,
 			alamat,
 			email,
 			nomor_hp,
@@ -121,8 +124,12 @@ export const login = async (req, res) => {
 			},
 			process.env.SECRET
 		);
+		let data = {
+			isAdmin : user.isAdmin,
+			token : token
+		}
 		delete user.dataValues.password;
-		return successResponse(req, res, "", token);
+		return successResponse(req, res, "",data );
 	} catch (error) {
 		return errorResponse(req, res, error.message);
 	}

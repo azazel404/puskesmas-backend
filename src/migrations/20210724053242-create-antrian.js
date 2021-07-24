@@ -11,7 +11,7 @@ module.exports = {
 			users_id: {
 				type: Sequelize.INTEGER,
 			},
-			polis_id: {
+			praktik_id: {
 				type: Sequelize.INTEGER,
 			},
 			tanggal_kunjungan: {
