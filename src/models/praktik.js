@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
 			start_praktik: DataTypes.DATE,
 			end_praktik: DataTypes.DATE,
 			polis_id: DataTypes.INTEGER,
+			dokter_id: DataTypes.INTEGER,
+			puskesmas_id: DataTypes.INTEGER,
 			status: DataTypes.STRING,
 		},
 		{}
@@ -18,6 +20,14 @@ module.exports = (sequelize, DataTypes) => {
 		Praktik.belongsTo(models.Polis, {
 			foreignKey: "polis_id",
 			as: "polis",
+		});
+		Praktik.belongsTo(models.Dokter, {
+			foreignKey: "dokter_id",
+			as: "dokters",
+		});
+		Praktik.belongsTo(models.Puskesmas, {
+			foreignKey: "puskesmas_id",
+			as: "puskesmas",
 		});
 	};
 	return Praktik;

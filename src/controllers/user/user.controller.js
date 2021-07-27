@@ -24,7 +24,7 @@ export const create = async (req, res) => {
 			email,
 			nomor_hp,
 		};
-		
+
 		const created = await User.create(payload);
 		return successResponse(req, res, "sukses create", created);
 	} catch (error) {
@@ -125,11 +125,11 @@ export const login = async (req, res) => {
 			process.env.SECRET
 		);
 		let data = {
-			isAdmin : user.isAdmin,
-			token : token
-		}
+			isAdmin: user.isAdmin,
+			token: token,
+		};
 		delete user.dataValues.password;
-		return successResponse(req, res, "",data );
+		return successResponse(req, res, "", data);
 	} catch (error) {
 		return errorResponse(req, res, error.message);
 	}
@@ -139,7 +139,7 @@ export const profile = async (req, res) => {
 	try {
 		const { userId } = req.user;
 		const user = await User.findOne({ where: { id: userId } });
-		return successResponse(req, res, { user });
+		return successResponse(req, res, "", user);
 	} catch (error) {
 		return errorResponse(req, res, error.message);
 	}

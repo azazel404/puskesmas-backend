@@ -6,7 +6,6 @@ import * as polisController from "../controllers/polis/polis.controller";
 import * as praktikController from "../controllers/praktik/praktik.controller";
 import * as antrianController from "../controllers/antrian/antrian.controller";
 
-
 const router = express.Router();
 
 //= ===============================
@@ -39,8 +38,8 @@ router.delete("/praktik/delete/:id", praktikController.deleted);
 
 router.get("/antrian/list", antrianController.list);
 router.get("/antrian/history", antrianController.historyList);
+router.get("/antrian/export", antrianController.exportListHistory);
 // router.post("/antrian/create", antrianController.create);
 router.put("/antrian/update/:id", antrianController.update);
-
 
 module.exports = router;

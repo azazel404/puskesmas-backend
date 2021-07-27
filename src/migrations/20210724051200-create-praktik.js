@@ -26,6 +26,12 @@ module.exports = {
 			polis_id: {
 				type: Sequelize.INTEGER,
 			},
+			dokter_id: {
+				type: Sequelize.INTEGER,
+			},
+			puskesmas_id: {
+				type: Sequelize.INTEGER,
+			},
 			status: {
 				type: Sequelize.STRING,
 			},

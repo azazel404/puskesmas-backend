@@ -3,7 +3,7 @@ import { successResponse, errorResponse } from "../../helpers";
 
 export const list = async (req, res) => {
 	try {
-		const result = await Praktik.findAll({ include: ["polis"] });
+		const result = await Praktik.findAll({ include: ["polis", "dokters", "puskesmas"] });
 		return successResponse(req, res, "", result);
 	} catch (error) {
 		return errorResponse(req, res, error.message);
@@ -12,8 +12,17 @@ export const list = async (req, res) => {
 
 export const create = async (req, res) => {
 	try {
-		const { nama_praktik,jam_mulai, jam_tutup, start_praktik, end_praktik, polis_id, status } =
-			req.body;
+		const {
+			nama_praktik,
+			jam_mulai,
+			jam_tutup,
+			start_praktik,
+			end_praktik,
+			polis_id,
+			dokter_id,
+			puskesmas_id,
+			status,
+		} = req.body;
 		const payload = {
 			nama_praktik,
 			jam_mulai,
@@ -21,6 +30,8 @@ export const create = async (req, res) => {
 			start_praktik,
 			end_praktik,
 			polis_id,
+			dokter_id,
+			puskesmas_id,
 			status,
 		};
 		const created = await Praktik.create(payload);
@@ -32,8 +43,17 @@ export const create = async (req, res) => {
 
 export const update = async (req, res) => {
 	try {
-		const { nama_praktik,jam_mulai, jam_tutup, start_praktik, end_praktik, polis_id, status } =
-			req.body;
+		const {
+			nama_praktik,
+			jam_mulai,
+			jam_tutup,
+			start_praktik,
+			end_praktik,
+			polis_id,
+			dokter_id,
+			puskesmas_id,
+			status,
+		} = req.body;
 		const payload = {
 			nama_praktik,
 			jam_mulai,
@@ -41,6 +61,8 @@ export const update = async (req, res) => {
 			start_praktik,
 			end_praktik,
 			polis_id,
+			dokter_id,
+			puskesmas_id,
 			status,
 		};
 		let find = await Praktik.findByPk(req.params.id);

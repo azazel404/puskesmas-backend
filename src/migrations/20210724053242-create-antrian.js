@@ -14,6 +14,12 @@ module.exports = {
 			praktik_id: {
 				type: Sequelize.INTEGER,
 			},
+			dokter_id: {
+				type: Sequelize.INTEGER,
+			},
+			puskemas_id: {
+				type: Sequelize.INTEGER,
+			},
 			tanggal_kunjungan: {
 				type: Sequelize.DATE,
 			},
