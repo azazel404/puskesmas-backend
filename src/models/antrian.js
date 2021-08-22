@@ -18,18 +18,22 @@ module.exports = (sequelize, DataTypes) => {
 		Antrian.belongsTo(models.Praktik, {
 			foreignKey: "praktik_id",
 			as: "praktiks",
+			onDelete: "cascade",
 		});
 		Antrian.belongsTo(models.User, {
 			foreignKey: "users_id",
 			as: "users",
+			onDelete: "cascade",
 		});
 		Antrian.belongsTo(models.Dokter, {
 			foreignKey: "dokter_id",
 			as: "dokters",
+			onDelete: "cascade",
 		});
 		Antrian.belongsTo(models.Puskesmas, {
 			foreignKey: "puskemas_id",
 			as: "puskesmas",
+			onDelete: "cascade",
 		});
 	};
 	return Antrian;

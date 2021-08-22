@@ -14,11 +14,13 @@ module.exports = (sequelize, DataTypes) => {
 		Polis.belongsTo(models.Dokter, {
 			foreignKey: "dokter_id",
 			as: "dokters",
+			onDelete: "cascade",
 		});
 
 		Polis.belongsTo(models.Puskesmas, {
 			foreignKey: "puskesmas_id",
 			as: "puskesmas",
+			onDelete: "cascade",
 		});
 	};
 	return Polis;

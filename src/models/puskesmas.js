@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 		Puskesmas.hasOne(models.Polis, {
 			foreignKey: "puskesmas_id",
 			as: "polis",
+			onDelete: "cascade",
 		});
 	};
 	return Puskesmas;

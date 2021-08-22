@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
 		Dokter.hasOne(models.Polis, {
 			foreignKey: "dokter_id",
 			as: "polis",
+			onDelete: "cascade",
 		});
 	};
 	return Dokter;

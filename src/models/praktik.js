@@ -20,14 +20,17 @@ module.exports = (sequelize, DataTypes) => {
 		Praktik.belongsTo(models.Polis, {
 			foreignKey: "polis_id",
 			as: "polis",
+			onDelete: "cascade",
 		});
 		Praktik.belongsTo(models.Dokter, {
 			foreignKey: "dokter_id",
 			as: "dokters",
+			onDelete: "cascade",
 		});
 		Praktik.belongsTo(models.Puskesmas, {
 			foreignKey: "puskesmas_id",
 			as: "puskesmas",
+			onDelete: "cascade",
 		});
 	};
 	return Praktik;
