@@ -22,7 +22,7 @@ router.get("/me", apiMiddleware, userController.profile);
 router.post("/login", validate(userValidator.login), userController.login);
 router.post("/register", validate(userValidator.register), userController.register);
 router.get("/praktik/list", apiMiddleware, praktikController.list);
-router.get("/antrian/list", apiMiddleware, antrianController.list);
+router.get("/antrian/list", apiMiddleware, antrianController.listAntrianClient);
 router.post("/antrian/create", apiMiddleware, antrianController.create);
 router.get("/puskesmas/list", apiMiddleware, puskesmasController.list);
 

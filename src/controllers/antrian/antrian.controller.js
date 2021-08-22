@@ -10,7 +10,25 @@ import { successResponse, errorResponse } from "../../helpers";
 
 export const list = async (req, res) => {
 	try {
-		const result = await Antrian.findAll({ include: ["users", "praktiks"] });
+		const result = await Antrian.findAll({
+			include: ["users", "praktiks"],
+			where: {
+				praktik_id: {
+					[Op.like]: "%" + req.body.praktikId + "%",
+				},
+			},
+		});
+		return successResponse(req, res, "", result);
+	} catch (error) {
+		return errorResponse(req, res, error.message);
+	}
+};
+
+export const listAntrianClient = async (req, res) => {
+	try {
+		const result = await Antrian.findAll({
+			include: ["users", "praktiks"],
+		});
 		return successResponse(req, res, "", result);
 	} catch (error) {
 		return errorResponse(req, res, error.message);

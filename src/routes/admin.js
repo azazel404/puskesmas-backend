@@ -34,9 +34,11 @@ router.delete("/polis/delete/:id", polisController.deleted);
 router.get("/praktik/list", praktikController.list);
 router.post("/praktik/create", praktikController.create);
 router.put("/praktik/update/:id", praktikController.update);
+router.post("/praktik/updateStatus", praktikController.updateStatus);
 router.delete("/praktik/delete/:id", praktikController.deleted);
 
-router.get("/antrian/list", antrianController.list);
+router.post("/antrian/list", antrianController.list);
+
 router.get("/antrian/history", antrianController.historyList);
 router.get("/antrian/export", antrianController.exportListHistory);
 // router.post("/antrian/create", antrianController.create);

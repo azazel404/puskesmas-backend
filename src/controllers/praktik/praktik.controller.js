@@ -1,5 +1,7 @@
-import { Praktik } from "../../models";
+import { Praktik, Antrian } from "../../models";
 import { successResponse, errorResponse } from "../../helpers";
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 export const list = async (req, res) => {
 	try {
@@ -84,13 +86,19 @@ export const updateStatus = async (req, res) => {
 		const payload = {
 			status,
 		};
-		let find = await Praktik.findByPk(req.params.id);
-
+		let find = await Praktik.findByPk(req.body.id);
 		if (!find) {
-			return res.status(400).send({ message: "praktik tidak ditemukan" });
+			return res.status(400).send({ message: "data tidak ditemukan" });
 		} else {
 			const updated = await find.update(payload);
-			return successResponse(req, res, "sukses update", updated);
+			const destroy = await Antrian.destroy({
+				where: {
+					praktik_id: {
+						[Op.like]: "%" + req.body.praktikId + "%",
+					},
+				},
+			});
+			return successResponse(req, res, "sukses update", "");
 		}
 	} catch (error) {
 		return errorResponse(req, res, error.message);
